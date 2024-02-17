@@ -37,7 +37,7 @@
                 installPhase = ''
                   runHook preInstall
 
-                  mkdir -p $out/bin
+                  mkdir -p $out/lib
                   cp ${name} $out/lib/${name}
 
                   runHook postInstall
