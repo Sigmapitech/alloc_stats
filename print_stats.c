@@ -13,10 +13,10 @@ void print_stats(void)
     double freed = 100. * ((double)MEM_STAT.free / (double)alloc_count);
 
     fprintf(stderr,
-        "%s:\n"
+        "\n%s:\n"
         "├─ %zu alloc (~%.2f %% calloc)\n"
         "├─ %zu freed (~%.2f %%)\n"
-        "└─ %zu realloc\n\n",
+        "└─ %zu realloc\n",
         __progname,
         alloc_count, calloced,
         MEM_STAT.free, freed,
