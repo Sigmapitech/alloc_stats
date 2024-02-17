@@ -27,8 +27,6 @@ void free(void *ptr)
     if (real == NULL)
         resolve_symbol((void **)&real, "free");
 
-    if (ptr == NULL)
-        fprintf(stderr, "Called free(NULL);");
     ++MEM_STAT.free;
     real(ptr);
 }
