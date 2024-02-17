@@ -45,8 +45,10 @@
               };
           in
           rec {
-            default = alloc_stats;
             alloc_stats = buildSharedLib "liballoc_stats.so";
+            default = pkgs.writeShellScriptBin "run" ''
+              LD_PRELOAD=${alloc_stats}/lib/liballoc_stats.so $*
+            '';
           };
       });
 }

@@ -2,14 +2,9 @@
 
 ## nix
 
-> Build
-```sh
-nix build github:Sigmapitech/alloc_stats
-```
-
 > Run
 ```sh
-LD_PRELOAD=result/lib/liballoc_stats.so ls
+nix run github:Sigmapitech/alloc_stats -- ls
 ```
 
 ## Non-nix
