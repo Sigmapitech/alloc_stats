@@ -1,5 +1,6 @@
 #include <dlfcn.h>
 #include <errno.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -26,6 +27,8 @@ void free(void *ptr)
     if (real == NULL)
         resolve_symbol((void **)&real, "free");
 
+    if (ptr == NULL)
+        fprintf(stderr, "Called free(NULL);");
     ++MEM_STAT.free;
     real(ptr);
 }
@@ -48,7 +51,10 @@ void *realloc(void *ptr, size_t size)
     if (real == NULL)
         resolve_symbol((void **)&real, "realloc");
 
-     ++MEM_STAT.realloc;
+    if (ptr == NULL)
+        ++MEM_STAT.alloc;
+    else
+        ++MEM_STAT.realloc;
     return real(ptr, size);
 }
 
@@ -59,6 +65,9 @@ void *reallocarray(void *ptr, size_t nmemb, size_t size)
     if (real == NULL)
         resolve_symbol((void **)&real, "reallocarray");
 
-    ++MEM_STAT.realloc;
+    if (ptr == NULL)
+        ++MEM_STAT.alloc;
+    else
+        ++MEM_STAT.realloc;
     return real(ptr, nmemb, size);
 }
