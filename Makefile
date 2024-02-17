@@ -11,6 +11,7 @@ CFLAGS += -O2
 VPATH += .
 SRC += resolve_symbol.c
 SRC += print_stats.c
+SRC += verbose_mode.c
 SRC += wrap_allocation.c
 SRC += wrap_exit.c
 
