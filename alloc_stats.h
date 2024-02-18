@@ -39,7 +39,11 @@ void *calloc(size_t nmemb, size_t size);
 void *malloc(size_t size);
 void *realloc(void *ptr, size_t size);
 void *reallocarray(void *ptr, size_t nmemb, size_t size);
-void exit(int status);
 void free(void *ptr);
+
+/* exit */
+void abort(void);
+void _exit(int status);
+void exit(int status);
 
 #endif
