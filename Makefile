@@ -7,6 +7,7 @@ CFLAGS += -Wall -Wextra
 CFLAGS += -iquote .
 CFLAGS += -fPIC
 CFLAGS += -O2
+CFLAGS += -z initfirst
 
 VPATH += .
 SRC += resolve_symbol.c
