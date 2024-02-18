@@ -1,26 +1,32 @@
 # Alloc stat
 
-## nix
+![demo](showcase.png)
 
-> Run
+## Usage
+
+set the `AS_VERBOSE` environment variable to `1` to print every allocation call.
+
+### using Nix
+
+> Run directly
 ```sh
 nix run github:Sigmapitech/alloc_stats -- ls
 ```
 
-## Non-nix
+### without Nix
 
-> Clone
+> Clone the repository
 ```sh
 git clone Sigmapitech/alloc_stats
 cd alloc_stats
 ```
 
-> Build
+> Build the library
 ```sh
 make
 ```
 
-> Run
+> Run by using preloading
 ```sh
 LD_PRELOAD=liballoc_stats.so ls
 ```
