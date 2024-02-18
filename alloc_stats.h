@@ -4,6 +4,8 @@
     #include <stdbool.h>
     #include <stddef.h>
 
+    #define VERBOSE 1
+
 typedef struct {
     size_t alloc;
     size_t calloc;
@@ -12,7 +14,6 @@ typedef struct {
 } mstat_t;
 
 extern mstat_t MEM_STAT;
-extern bool VERBOSE;
 
 void resolve_symbol(void **funcp, const char *sym_name);
 void print_stats(void);

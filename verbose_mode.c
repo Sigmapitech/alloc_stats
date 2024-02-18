@@ -1,20 +1,17 @@
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "alloc_stats.h"
 
-extern char **environ;
-
-bool VERBOSE = 0;
-
-__attribute__((constructor))
-void env_lookup(void)
+void __attribute__ ((constructor)) init(void)
 {
-    for (size_t i = 0; environ[i] != NULL; i++) {
-        if (strcmp(environ[i], "AS_VERBOSE=1") == 0) {
-            VERBOSE = 1;
-            return;
-        }
-    }
+    fprintf(stderr, "preload init!\n");
+}
+
+void __attribute__ ((destructor)) cleanup(void)
+{
+    fprintf(stderr, "preload cleanup!\n");
 }
