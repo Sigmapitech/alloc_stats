@@ -32,9 +32,9 @@ void free(void *ptr)
 
     if (real == NULL)
         resolve_symbol((void **)&real, "free");
-
-    if (ptr != NULL)
-        ++MEM_STAT.free;
+    if (ptr == NULL)
+        return;
+    ++MEM_STAT.free;
     if (VERBOSE)
         fprintf(stderr, "free(ptr=%p)\n", ptr);
     real(ptr);
