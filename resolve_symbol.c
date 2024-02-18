@@ -5,6 +5,7 @@
 
 void resolve_symbol(void **funcp, const char *sym_name)
 {
+    lookup_env();
     if (*funcp == NULL)
         *funcp = dlsym(RTLD_NEXT, sym_name);
     if (*funcp == NULL)

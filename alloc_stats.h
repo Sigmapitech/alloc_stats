@@ -4,8 +4,6 @@
     #include <stdbool.h>
     #include <stddef.h>
 
-    #define VERBOSE 1
-
 typedef struct {
     size_t alloc;
     size_t calloc;
@@ -13,6 +11,7 @@ typedef struct {
     size_t realloc;
 } mstat_t;
 
+extern bool VERBOSE;
 extern mstat_t MEM_STAT;
 
 /* From valgrind's docs:
@@ -33,6 +32,7 @@ extern void __libc_freeres(void);
 
 void resolve_symbol(void **funcp, const char *sym_name);
 void print_stats(void);
+void lookup_env(void);
 
 /* wrapped */
 void *calloc(size_t nmemb, size_t size);
