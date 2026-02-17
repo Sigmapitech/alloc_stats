@@ -91,3 +91,18 @@ void *reallocarray(void *ptr, size_t nmemb, size_t size)
             ptr, nmemb, size, p);
     return p;
 }
+
+int posix_memalign(void **memptr, size_t alignment, size_t size)
+{
+    static int (*real)(void **, size_t, size_t) = NULL;
+
+    if (real == NULL)
+        resolve_symbol((void **)&real, "posix_memalign");
+
+    int r = real(memptr, alignment, size);
+    ++MEM_STAT.alloc;
+    if (VERBOSE)
+        fprintf(stderr, "posix_memalign(ptr=%p, alignment=%zu, size=%zu) -> %p\n",
+            (void *)memptr, alignment, size, *memptr);
+    return r;
+}
