@@ -106,3 +106,18 @@ int posix_memalign(void **memptr, size_t alignment, size_t size)
             (void *)memptr, alignment, size, *memptr);
     return r;
 }
+
+void *aligned_alloc(size_t alignment, size_t size)
+{
+    static void *(*real)(size_t, size_t) = NULL;
+    void *p;
+
+    if (real == NULL)
+        resolve_symbol((void **)&real, "aligned_alloc");
+
+    p = real(size);
+    ++MEM_STAT.alloc;
+    if (VERBOSE)
+        fprintf(stderr, "alignment(alignment=%zu, size=%zu) -> %p\n", alignment, size, p);
+    return p;
+}
